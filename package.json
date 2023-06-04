@@ -1,0 +1,30 @@
+{
+  "id": 2193163154041,
+  "name": "@indra.ai/puppetdeva",
+  "version": "0.0.1",
+  "author": "Quinn Michaels",
+  "license": "MIT",
+  "copyright": "2023",
+  "description": "The Puppet Deva handles Puppeteer in deva.world.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/indraai/PuppetDeva.git"
+  },
+  "keywords": [
+    "Puppet",
+    "Deva",
+    "deva.world"
+  ],
+  "bugs": {
+    "url": "https://github.com/indraai/PuppetDeva/issues"
+  },
+  "homepage": "https://github.com/indraai/PuppetDeva#readme",
+  "dependencies": {
+    "@indra.ai/deva": "^1.1.118",
+    "puppeteer": "^20.4.0"
+  }
+}

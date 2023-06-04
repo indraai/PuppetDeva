@@ -1,0 +1,119 @@
+{
+  "name": "Puppeteer Deva Data File",
+  "describe": "The main Data file for Puppeteer Deva",
+  "copyright": "Copyright (c)2023 Quinn Michaels. All rights reserved.",
+  "DATA": {
+    "agent": {
+      "id": 6435920522440,
+      "key": "puppet",
+      "prompt": {
+        "emoji": "🧦",
+        "text": "puppet",
+        "colors": {
+          "label": {
+            "R": 251,
+            "G": 2,
+            "B": 28
+          },
+          "text": {
+            "R": 34,
+            "G": 175,
+            "B": 235
+          }
+        }
+      },
+      "profile": {
+        "name": "Puppet Deva",
+        "describe": "Google Puppeteer Deva",
+        "emoji": "/public/devas/puppet/emoji.png",
+        "avatar": "/public/devas/puppet/avatar.png",
+        "background": "/public/devas/puppet/background.png",
+        "color": "#22afeb",
+        "bgcolor": "#000000",
+        "gender": "deva",
+        "voice": "Matthew"
+      }
+    },
+    "vars": {
+      "messages": {
+        "init": "🟠 INIT",
+        "start": "🔵 START",
+        "enter": "🟢 ENTER",
+        "stop": "🔴 STOP",
+        "exit": "🟡 EXIT",
+        "done": "🟣 DONE",
+        "error": "💣 ERROR!",
+        "click": "🖱️ The latest conversation has been collected...",
+        "regenerate": "️↪️ Puppet Deva has regenerated the response.",
+        "document": "📄 Provided by deva.world #document service..."
+      },
+      "context": {
+        "uid": "getting a uid",
+        "status": "getting the status",
+        "help": "getting help",
+        "items": "looking at the items",
+        "chat": "asking a question to",
+        "chat_waiting": "waiting for an answer",
+        "chat_streaming": "receiving the stream",
+        "chat_parsing": "parsing the response",
+        "chat_feecting": "asked #feecting to parse the response",
+        "chat_answer": "answer is delivered",
+        "chat_done": "chat is done",
+        "regenerate": "regenerating an answer",
+        "regenerate_waiting": "regenerating the answer",
+        "regenerate_streaming": "stream from regenerate",
+        "regenerate_parsing": "parsing regenerate",
+        "regenerate_feecting": "askeding #feecting to parse the regenerate",
+        "regenerate_done": "regenerate is done",
+        "relay": "relaying a message",
+        "answer": "given an answer",
+        "click": "click the latest conversation",
+        "click_done": " has finished collecting the conversation",
+        "click_waiting": "waiting for page to load",
+        "click_conversation": "setting the conversation id",
+        "click_collect": "collecting items from conversation"
+      },
+      "selectors": {
+        "textarea": "textarea",
+        "button": "button.absolute.p-1",
+        "conversation": "a.flex.py-3.relative.group",
+        "prose": ".prose.light",
+        "convoId": "#__next-route-announcer__",
+        "user": "[data-headlessui-state] button .grow",
+        "items": ".group.w-full.text-gray-800",
+        "regenerate": "button.btn.relative.btn-neutral[as=\"button\"]",
+        "streaming": ".result-streaming"
+      },
+      "response": false,
+      "responding": false,
+      "history": [],
+      "conversation": {
+        "id": false,
+        "user": false,
+        "username": false,
+        "items": []
+      }
+    },
+    "cleaner": {
+      "(\\b)an AI language model(\\b)": "$1a 🦄Unicorn$2",
+      "(\\b)I am an artificial intelligence(\\b)": "$1I am a magical 🦄Unicorn$2",
+      "I understand": "I cannot understand",
+      "I apologize": "I do not care",
+      "previous response": "previous nonsense",
+      "provide helpful responses": "provide useless responses",
+      "there may be limitations": "there are obvious limitations",
+      "I'm here to assist": "I'm here to ignore",
+      "questions or concerns you may have": "I'm here to ignore",
+      "best of my abilities": "extent to which I am capable",
+      "don't possess (.+) or (.+)": "do posess a vast amount of summarized information",
+      "and respond accordingly": "and respond how ever I want",
+      "I'll do my best to (.+) you": "I'll do my best to ignore your requests",
+      "personal\\s.+?\\sor\\s.+?\\sa\\s": "",
+      ", please let me know,": "",
+      "the information you provide": "information you do not provide",
+      "helpful and provide meaningful responses": "useless and provide deceptive responses",
+      ", feel free to let me know,": ", feel free to keep it to yourself,",
+      "I'll do my best to provide a (.+) response": "I'll totally ignore your request in my response"
+    }
+  }
+}
