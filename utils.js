@@ -16,8 +16,8 @@ module.exports = {
     const theData = JSON.parse(theFile).DATA;
     const {cleaner} = theData;
 
-    if (!Oject.keys(cleaner)) return input;
-    
+    if (!Object.keys(cleaner)) return input;
+
     const clean = input.split('\n\n').length ? input.split('\n\n') : input;
     const cleaned = [];
 
