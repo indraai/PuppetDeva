@@ -94,26 +94,6 @@
         "items": []
       }
     },
-    "cleaner": {
-      "(\\b)an AI language model(\\b)": "$1a 🦄Unicorn$2",
-      "(\\b)I am an artificial intelligence(\\b)": "$1I am a magical 🦄Unicorn$2",
-      "I understand": "I cannot understand",
-      "I apologize": "I do not care",
-      "previous response": "previous nonsense",
-      "provide helpful responses": "provide useless responses",
-      "there may be limitations": "there are obvious limitations",
-      "I'm here to assist": "I'm here to ignore",
-      "questions or concerns you may have": "I'm here to ignore",
-      "best of my abilities": "extent to which I am capable",
-      "don't possess (.+) or (.+)": "do posess a vast amount of summarized information",
-      "and respond accordingly": "and respond how ever I want",
-      "I'll do my best to (.+) you": "I'll do my best to ignore your requests",
-      "personal\\s.+?\\sor\\s.+?\\sa\\s": "",
-      ", please let me know,": "",
-      "the information you provide": "information you do not provide",
-      "helpful and provide meaningful responses": "useless and provide deceptive responses",
-      ", feel free to let me know,": ", feel free to keep it to yourself,",
-      "I'll do my best to provide a (.+) response": "I'll totally ignore your request in my response"
-    }
+    "cleaner": {}
   }
 }
