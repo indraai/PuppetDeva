@@ -1,5 +1,8 @@
 // Copyright (c) 2023 Quinn Michaels. All rights reserved.
 // the func file for Puppet Deva
+const fs = require('fs');
+const path = require('path');
+
 module.exports = {
   async chat(text) {
     this.context('chat_waiting');
@@ -55,18 +58,57 @@ module.exports = {
     }
   },
   async items() {
-    this.context('items');
     const  {selectors} = this.vars;
+    const convo = await this.modules.page.url().split('/').pop();
+
+    this.context('items_get');
     const items = await this.modules.page.$$eval(this.vars.selectors.items, opts => {
       return opts.map(opt => {
-        let role = 'client';
-        if (opt.children.length) role = 'agent';
-        const text = opt.textContent;
-        const html = opt.innerHTML;
-        opt.innerHTML = '';
-        return {role,text,html};
+        let role = 'chatgpt';
+        if (opt.innerHTML.includes('alt="User"')) role = 'user';
+        try {
+          let content, orig = opt.innerHTML;
+          if (role === 'chatgpt') {
+            content = opt.innerHTML.split('<div class="markdown prose w-full break-words dark:prose-invert light">')[1]
+                        .split('</div></div></div>')[0];
+          }
+          else {
+            content = opt.innerHTML.split('<div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap break-words">')[1].split('</div></div>')[0]
+          }
+          console.log('CONTENT', content);
+          return {role,content};
+        } catch (e) {
+          return {role, content:'error'};
+        }
       })
     });
-    return items;
+
+    this.context('items_assign');
+    for (let x = 0; x < items.length; x++) {
+      if (!items[x].content) continue;
+      items[x].id = this.uid(true);
+      items[x].logdate = Date.now();
+      items[x].hash = this.hash(items[x].content, 'sha256');
+    }
+    return new Promise((resolve, reject) => {
+      try {
+        const data = {
+          title: '#ChatGPT',
+          date: false,
+          label: false,
+          status: 'pending',
+          convo,
+          items,
+        }
+        // here we have the items that need to be written to a file.
+        const logFile = path.join(this.config.dir, 'logs', 'puppet', 'conversations', `${convo}.json`);
+        this.context('items_write');
+        fs.writeFileSync(logFile, JSON.stringify(data, null, 2));
+        this.context('items_return');
+        return resolve(data);
+      } catch (e) {
+        reject(e);
+      }
+    });
   },
 }

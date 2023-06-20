@@ -155,4 +155,25 @@ module.exports = {
     this.context('shuttle');
     return Promise.resolve({text:this.vars.response.text});
   },
+
+  /**************
+  method: items
+  params: packet
+  describe: collect imtes from current puppet chat and write to a local json file.
+  ***************/
+  items(packet) {
+    return new Promise((resolve, reject) => {
+      this.context('items');
+      this.func.items().then(items => {
+        this.context('items_done');
+        return resolve({
+          text: items.convo,
+          html: items.convo,
+          data: items,
+        });
+      }).catch(err => {
+        return this.error(err, packet, reject);
+      })
+    });
+  }
 }

@@ -27,14 +27,14 @@ const PUTTPET = new Deva({
   info,
   agent,
   vars,
-  utils: require('./utils.js'),
+  utils: require('./_utils.js'),
   listeners: {},
   modules: {
     browser: false,
     page: false,
   },
-  func: require('./func.js'),
-  methods: require('./methods.js'),
+  func: require('./_func.js'),
+  methods: require('./_methods.js'),
   async onDone(data) {
     const services = this.services();
     this.modules.browser = await puppeteer.connect({
