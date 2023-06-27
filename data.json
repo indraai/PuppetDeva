@@ -47,6 +47,7 @@
         "regenerate": "️↪️ Puppet Deva has regenerated the response.",
         "document": "📄 Provided by deva.world #document service..."
       },
+      "role": "user",
       "context": {
         "uid": "getting a uid",
         "status": "getting the status",

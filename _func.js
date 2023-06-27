@@ -39,7 +39,7 @@ module.exports = {
         for (const child of responseElement.children) {
           text.push(child.textContent);
         }
-        responseElement.innerHTML = '';
+        // responseElement.innerHTML = '';
         return text.join('\n\n');
       }, this.vars.selectors.prose);
 
@@ -64,8 +64,8 @@ module.exports = {
     this.context('items_get');
     const items = await this.modules.page.$$eval(this.vars.selectors.items, opts => {
       return opts.map(opt => {
-        let role = 'chatgpt';
-        if (opt.innerHTML.includes('alt="User"')) role = 'user';
+        let role = 'user';
+        if (opt.innerHTML.includes('markdown prose')) role = 'chatgpt';
         try {
           let content, orig = opt.innerHTML;
           if (role === 'chatgpt') {
@@ -73,16 +73,14 @@ module.exports = {
                         .split('</div></div></div>')[0];
           }
           else {
-            content = opt.innerHTML.split('<div class="min-h-[20px] flex flex-col items-start gap-4 whitespace-pre-wrap break-words">')[1].split('</div></div>')[0]
+            content = opt.innerHTML.split('<div class="empty:hidden">')[1].split('</div>')[0]
           }
-          console.log('CONTENT', content);
           return {role,content};
         } catch (e) {
-          return {role, content:'error'};
+          return {role, content:e};
         }
       })
     });
-
     this.context('items_assign');
     for (let x = 0; x < items.length; x++) {
       if (!items[x].content) continue;
@@ -101,7 +99,7 @@ module.exports = {
           items,
         }
         // here we have the items that need to be written to a file.
-        const logFile = path.join(this.config.dir, 'logs', 'puppet', 'conversations', `${convo}.json`);
+        const logFile = path.join(this.config.dir, 'logs', 'devas', 'puppet', 'conversations', `${convo}.json`);
         this.context('items_write');
         fs.writeFileSync(logFile, JSON.stringify(data, null, 2));
         this.context('items_return');

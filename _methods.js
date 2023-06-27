@@ -100,7 +100,17 @@ module.exports = {
     const agent  = this.agent();
     const data = {};
     return new Promise((resolve, reject) => {
-      this.func.chat(packet.q.text).then(chat => {
+
+      const role = packet.q.meta.params[1] || this.vars.role;
+
+      const content = [
+        `::begin:${role}:${packet.id}`,
+        packet.q.text,
+        `::end:${role}:${this.hash(packet.q.text)}`,
+        `date: ${this.formatDate(Date.now(), 'long', true)}`,
+      ].join('\n');
+
+      this.func.chat(content).then(chat => {
         const text = [
           `::begin:${agent.key}:${packet.id}`,
           this.utils.parse(chat.text),
