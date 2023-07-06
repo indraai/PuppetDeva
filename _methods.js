@@ -107,8 +107,10 @@ module.exports = {
         `::begin:${role}:${packet.id}`,
         packet.q.text,
         `::end:${role}:${this.hash(packet.q.text)}`,
-        `date: ${this.formatDate(Date.now(), 'long', true)}`,
+        // `date: ${this.formatDate(Date.now(), 'long', true)}`,
       ].join('\n');
+
+      this.prompt(`chatt get here ${role}`);
 
       this.func.chat(content).then(chat => {
         const text = [

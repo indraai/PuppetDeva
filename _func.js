@@ -54,7 +54,7 @@ module.exports = {
       this.context('chat_answer');
       return Promise.resolve(response);
     } catch (e) {
-      Promise.reject(e)
+      return Promise.reject(e)
     }
   },
   async items() {
