@@ -102,11 +102,14 @@ module.exports = {
     return new Promise((resolve, reject) => {
 
       const role = packet.q.meta.params[1] || this.vars.role;
-
+      const from = role === 'user' ? this.client().profile.name : packet.q.agent.profile.name;
       const content = [
-        `::begin:${role}:${packet.id}`,
+        `id: ${packet.id}`,
+        `from: ${from}`,
+        `date: ${this.formatDate(Date.now(), 'long', true)}`,
+        `::begin:content:${packet.id}`,
         packet.q.text,
-        `::end:${role}:${this.hash(packet.q.text)}`,
+        `::end:content:${packet.q.meta.hash}`,
         // `date: ${this.formatDate(Date.now(), 'long', true)}`,
       ].join('\n');
 
@@ -117,7 +120,7 @@ module.exports = {
           `::begin:${agent.key}:${packet.id}`,
           this.utils.parse(chat.text),
           `::end:${agent.key}:${this.hash(chat.text)}`,
-        ].join('\n')
+        ].join('\n');
         this.context('chat_feecting');
         return this.question(`#feecting parse ${text}`);
       }).then(feecting => {
