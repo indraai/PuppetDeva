@@ -102,15 +102,11 @@ module.exports = {
     return new Promise((resolve, reject) => {
 
       const role = packet.q.meta.params[1] || this.vars.role;
-      const from = role === 'user' ? this.client().profile.name : packet.q.agent.profile.name;
       const content = [
-        `id: ${packet.id}`,
-        `from: ${from}`,
-        `date: ${this.formatDate(Date.now(), 'long', true)}`,
-        `::begin:content:${packet.id}`,
+        `::begin:${role}:${packet.id}`,
         packet.q.text,
-        `::end:content:${packet.q.meta.hash}`,
-        // `date: ${this.formatDate(Date.now(), 'long', true)}`,
+        `::end:${role}:${packet.q.meta.hash}`,
+        `date: ${this.formatDate(Date.now(), 'long', true)}`,
       ].join('\n');
 
       this.prompt(`chatt get here ${role}`);
@@ -162,12 +158,12 @@ module.exports = {
   },
 
   /**************
-  func: shuttle
+  func: response
   params: packet
-  describe: shuttle a response to the open deva.
+  describe: get last response.
   ***************/
-  shuttle(packet) {
-    this.context('shuttle');
+  response(packet) {
+    this.context('response');
     return Promise.resolve({text:this.vars.response.text});
   },
 

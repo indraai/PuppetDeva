@@ -92,14 +92,14 @@ module.exports = {
       try {
         const data = {
           title: '#ChatGPT',
-          date: false,
+          date: this.formatDate(Date.now(), 'long', true),
           label: false,
           status: 'pending',
           convo,
           items,
         }
         // here we have the items that need to be written to a file.
-        const logFile = path.join(this.config.dir, 'logs', 'devas', 'puppet', 'conversations', `${convo}.json`);
+        const logFile = path.join(this.config.dir, 'logs', 'convo', `${convo}.json`);
         this.context('items_write');
         fs.writeFileSync(logFile, JSON.stringify(data, null, 2));
         this.context('items_return');

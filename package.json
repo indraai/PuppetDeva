@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/indraai/PuppetDeva#readme",
   "dependencies": {
-    "@indra.ai/deva": "^1.1.128",
+    "@indra.ai/deva": "^1.2.5",
     "puppeteer": "^20.4.0"
   }
 }
