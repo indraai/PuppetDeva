@@ -10,6 +10,22 @@ name: ::agent_name::
 emoji: ::agent_emoji::
 describe: ::agent_describe::
 
+## Methods
+
+### Click
+
+### Regenerate
+
+### Chat
+
+### Relay
+
+### Response
+
+### Items
+p: Collect items from current puppet chat and write to a local json file.
+cmd:#::agent_key:: items
+
 ## Features
 
 ### security

@@ -100,18 +100,8 @@ module.exports = {
     const agent  = this.agent();
     const data = {};
     return new Promise((resolve, reject) => {
-
       const role = packet.q.meta.params[1] || this.vars.role;
-      const content = [
-        `::begin:${role}:${packet.id}`,
-        packet.q.text,
-        `::end:${role}:${packet.q.meta.hash}`,
-        `date: ${this.formatDate(Date.now(), 'long', true)}`,
-      ].join('\n');
-
-      this.prompt(`chatt get here ${role}`);
-
-      this.func.chat(content).then(chat => {
+      this.func.chat(packet.q.text).then(chat => {
         const text = [
           `::begin:${agent.key}:${packet.id}`,
           this.utils.parse(chat.text),
@@ -164,13 +154,23 @@ module.exports = {
   ***************/
   response(packet) {
     this.context('response');
-    return Promise.resolve({text:this.vars.response.text});
+    return new Promise((resolve, reject) => {
+      try {
+        return resolve({
+          text:this.vars.response.text,
+          html:this.vars.response.html,
+          data: this.vars.response
+        });
+      } catch (e) {
+        return this.error(e, packet, reject);
+      }
+    });
   },
 
   /**************
   method: items
   params: packet
-  describe: collect imtes from current puppet chat and write to a local json file.
+  describe: collect items from current puppet chat and write to a local json file.
   ***************/
   items(packet) {
     return new Promise((resolve, reject) => {

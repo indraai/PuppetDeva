@@ -46,6 +46,7 @@ module.exports = {
       const response = {
         id: this.uid(true),
         text: this.utils.process(answer),
+        html: ans.innerHTML,
         created: Date.now(),
       };
       this.vars.response = response;
@@ -88,6 +89,7 @@ module.exports = {
       items[x].logdate = Date.now();
       items[x].hash = this.hash(items[x].content, 'sha256');
     }
+    console.log(items);
     return new Promise((resolve, reject) => {
       try {
         const data = {

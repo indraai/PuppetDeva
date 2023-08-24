@@ -85,7 +85,7 @@
         "prose": ".prose.light",
         "convoId": "#__next-route-announcer__",
         "user": "[data-headlessui-state] button .grow",
-        "items": ".group.w-full.text-gray-800",
+        "items": ".group.w-full",
         "regenerate": "button.btn.relative.btn-neutral[as=\"button\"]",
         "streaming": ".result-streaming"
       },
